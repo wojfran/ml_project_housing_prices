@@ -1,0 +1,8 @@
+To enter:
+.\my_env\Scripts\activate
+
+To exit:
+dactivate
+
+To launch jupyter:
+jupyter notebook
