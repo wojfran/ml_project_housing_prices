@@ -13,7 +13,7 @@ head = housing.head()
 
 print(head)
 
-housing.hist(bins=50, figsize=(20,15))
+# housing.hist(bins=50, figsize=(20,15))
 # plt.show()
 
 housing["income_cat"] = pd.cut(housing["median_income"],
@@ -25,4 +25,15 @@ for train_index, test_index in split.split(housing, housing["income_cat"]):
     strat_train_set = housing.loc[train_index]
     strat_test_set = housing.loc[test_index]
 
+housing = strat_train_set.copy()
+housing.plot(kind="scatter", x="longitude", y="latitude", alpha=0.4,
+ s=housing["population"]/100, label="population", figsize=(10,7),
+ c="median_house_value", cmap=plt.get_cmap("jet"), colorbar=True,
+)
+plt.legend()
+plt.show()
+
+housing["rooms_per_household"] = housing["total_rooms"]/housing["households"]
+housing["bedrooms_per_room"] = housing["total_bedrooms"]/housing["total_rooms"]
+housing["population_per_household"]=housing["population"]/housing["households"]
 
